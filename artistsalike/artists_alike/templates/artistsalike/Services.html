@@ -1,0 +1,323 @@
+{% load static %}
+<html lang="en">
+
+<head>
+  <title>Artists Alike - Services</title>
+  <link href="{% static 'artistsalike/img/a1.jpg' %}" rel="icon">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,700,700i&display=swap" rel="stylesheet">
+  <link href="{% static 'artistsalike/vendor/animate.css/animate.min.css' %}" rel="stylesheet">
+  <link href="{% static 'artistsalike/vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static 'artistsalike/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'artistsalike/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'artistsalike/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'artistsalike/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'artistsalike/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+  <link href="{% static 'artistsalike/css/style.css' %}" rel="stylesheet">
+ <style>.roundborder{border-radius:20px;}</style>
+
+</head>
+
+<body>
+  <header id="header" class="fixed-top d-flex align-items-center ">
+    <div class="container d-flex justify-content-between align-items-center">
+
+      <div class="logo">
+                {% if request.session.Email %}
+        <h1 class="text-light"><a href="{% url 'index1' request.session.Email %}"><span>Artists Alike</span></a></h1>
+                {% else %}
+        <h1 class="text-light"><a href="{% url 'index' %}"><span>Artists Alike</span></a></h1>
+                {% endif %}      </div>
+
+        <nav id="navbar" class="navbar">
+        <ul>
+                {% if request.session.Email %}
+          <li><a href="{% url 'index1' request.session.Email %}">Home</a></li>
+                {% else %}
+          <li><a href="{% url 'index' %}">Home</a></li>
+                {% endif %}
+          <li class="dropdown"><a href="#"><span>Artists</span> <i class="bi bi-chevron-down"></i></a>
+          <ul class="roundborder">
+                {% if request.session.Artist_Email %}
+                <li><a href="{% url 'artists'  request.session.Artist_Email %}">Artists</a></li>
+                {% else %}
+               <li><a href="{% url 'artistslogin' %}">Artist Login</a></li>
+                <li><a href="{% url 'ArtistReg' %}">Artist Registration</a></li>
+                {% endif %}
+            </ul>
+          </li>
+           <li class="dropdown rounded"><a href="#"><span>Order</span> <i class="bi bi-chevron-down"></i></a>
+            <ul class="roundborder">
+                {% if request.session.Email %}
+                <li><a href="{% url 'portfolio' request.session.Email %}">Place Order</a></li>
+                <li><a href="{% url 'viewuserorder' request.session.Email %}">View Order</a></li>
+                {% else %}
+                <li><a href="{% url 'portfolio1' %}">Place Order</a></li>
+                {% endif %}
+            </ul>
+          </li>
+                {% if request.session.Email %}
+               <li><a class="active" href="{% url 'Services' request.session.Email %}">Services</a></li>
+            <li><a href="{% url 'Contact' request.session.Email %}">Contact Us</a></li>
+                {% else %}
+            <li><a  class="active" href="{% url 'Services1' %}">Services</a></li>
+           <li><a href="{% url 'Contact1' %}">Contact Us</a></li>
+                {% endif %}
+
+                {% if request.session.Admin_Email %}
+                <li><a href="{% url 'admin' %}">Admin</a></li>
+                {% else %}
+                <li><a href="{% url 'adminlogin' %}">Admin Login</a></li>
+                {% endif %}
+
+          <li><a href="#"></a></li>  <li><a href="#"></a></li>
+            {% if request.session.Email %}
+            <span class="text-warning">{{ request.session.Email }}</span>
+                      {% if profile.Profile_Photo %}
+                    <li class="dropdown">
+                    <img src="{{profile.Profile_Photo.url}}" alt="User" class="rounded-circle" width="50" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                      <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li><a href="{% url 'profile' request.session.Email %}">Profile</a></li>
+                        <li><a href="{% url 'Logout' %}">Logout</a></li>
+                        </ul>
+                      </li>
+                      {% else %}
+                        <li class="dropdown">
+                          <i class="bx bxs-user-circle text-white" style="font-size:40px;" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></i>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li><a href="{% url 'profile' request.session.Email %}">Profile</a></li>
+                        <li><a href="{% url 'Logout' %}">Logout</a></li>
+                        </ul>
+                      </li>
+                      {% endif %}
+            {% else %}
+                 <li class="dropdown"><i class="bx bxs-user-circle text-white" style="font-size:40px;" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></i>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li><a href="{% url 'userlogin' %}">Login</a></li>
+                    <li><a href="{% url 'Reg' %}">Registration</a></li>
+                    </ul>
+            </li>
+            {% endif %}
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+   
+    <section class="breadcrumbs">
+      <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+          <h2>Our Services</h2>
+          <ol>
+                {% if request.session.Email %}
+            <li><a href="{% url 'index1' request.session.Email %}">Home</a></li>
+                {% else %}
+            <li><a href="{% url 'index' %}">Home</a></li>
+                {% endif %}
+              <li>Our Services</li>
+          </ol>
+        </div>
+
+      </div>
+    </section>
+	
+    <section class="services">
+      <div class="container">
+
+        <div class="row">
+          <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up">
+            <div class="icon-box icon-box-pink">
+              <div class="icon"><i class="bx bxs-music"></i></div>
+              <h4 class="title"><a href="">Music Production</a></h4>
+              <p class="description">Music production is the process of managing and overseeing the recording and production of a track – from writing the first lyrics and melodies to mastering the finished track.</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+            <div class="icon-box icon-box-cyan">
+              <div class="icon"><i class="bx bx-images"></i></div>
+              <h4 class="title"><a href="">Image Editing</a></h4>
+              <p class="description">Image editing encompasses the processes of altering images, whether they are digital photographs, traditional photo-chemical photographs, or illustrations.</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
+            <div class="icon-box icon-box-green">
+              <div class="icon"><i class="bx bx-photo-album"></i></div>
+              <h4 class="title"><a href="">Photography</a></h4>
+              <p class="description">Photography is the art, application, and practice of creating durable images by recording light, either electronically by means of an image sensor, or chemically by means of a light-sensitive material such as photographic film.</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
+            <div class="icon-box icon-box-blue">
+              <div class="icon"><i class="bx bxs-videos"></i></div>
+              <h4 class="title"><a href="">Video Editing</a></h4>
+              <p class="description">Video editing is the manipulation and arrangement of video shots. Video editing is used to structure and present all video information, including films and television shows, video advertisements and video essays.</p>
+            </div>
+          </div>
+
+        </div>
+
+
+      </div>
+    </section>
+		
+	
+    <section class="why-us section-bg" data-aos="fade-up" date-aos-delay="200">
+      <div class="container">
+
+        <div class="row">
+          <div class="col-lg-6 video-box">
+            <img src="{% static 'artistsalike/img/m1.jpg' %}" class="img-fluid" alt="">
+          </div>
+
+          <div class="col-lg-6 d-flex flex-column justify-content-center p-5">
+           <div class="icon-box">
+			<h4 class="title">Music Production:</h4><br>
+              <p class="description">Music production is the process of managing and overseeing the recording and production of a track – from writing the first lyrics and melodies to mastering the finished track. There are various different forms of production, from track production to toplining, or even solely mixing and mastering. I will be looking at the creation of an entire song, from writing to mastering, I will be looking at these six stages:<br>
+								&#8226; Songwriting<br>
+								&#8226; Arrangement<br>
+								&#8226; Tracking<br>
+								&#8226; Editing<br>
+								&#8226; Mixing<br>
+								&#8226; Mastering</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+	
+	<section class="why-us section-bg" data-aos="fade-up" date-aos-delay="200">
+      <div class="container">
+
+        <div class="row">
+		
+		 <div class="col-lg-6 d-flex flex-column justify-content-center p-5">
+           <div class="icon-box">
+			<h4 class="title">Image Editing:</h4><br>
+              <p class="description">Image editing encompasses the processes of altering images, whether they are digital photographs, traditional photo-chemical photographs, or illustrations. Traditional analog image editing is known as photo retouching, using tools such as an airbrush to modify photographs or editing illustrations with any traditional art medium. Graphic software programs, which can be broadly grouped into vector graphics editors, raster graphics editors, and 3D modelers, are the primary tools with which a user may manipulate, enhance, and transform images. Many image editing programs are also used to render or create computer art from scratch.
+Raster images are stored in a computer in the form of a grid of picture elements, or pixels. These pixels contain the image's color and brightness information. Image editors can change the pixels to enhance the image in many ways. The pixels can be changed as a group, or individually, by the sophisticated algorithms within the image editors.
+</p>
+            </div>
+          </div>
+          <div class="col-lg-6 video-box">
+            <img src="{% static 'artistsalike/img/p1.jpg' %}" class="img-fluid" alt="">
+          </div>
+        </div>
+      </div>
+    </section>
+	
+	<section class="why-us section-bg" data-aos="fade-up" date-aos-delay="200">
+      <div class="container">
+
+        <div class="row">
+          <div class="col-lg-6 video-box">
+            <img src="{% static 'artistsalike/img/ph1.jpg' %}" class="img-fluid" alt="">
+          </div>
+
+          <div class="col-lg-6 d-flex flex-column justify-content-center p-5">
+           <div class="icon-box">
+			<h4 class="title">Photography:</h4><br>
+              <p class="description">Photography is the art, application, and practice of creating durable images by recording light, either electronically by means of an image sensor, or chemically by means of a light-sensitive material such as photographic film. It is employed in many fields of science, manufacturing (e.g., photolithography), and business, as well as its more direct uses for art, film and video production, recreational purposes, hobby, and mass communication.Typically, a lens is used to focus the light reflected or emitted from objects into a real image on the light-sensitive surface inside a camera during a timed exposure. With an electronic image sensor, this produces an electrical charge at each pixel, which is electronically processed and stored in a digital image file for subsequent display or processing. </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+	
+	<section class="why-us section-bg" data-aos="fade-up" date-aos-delay="200">
+      <div class="container">
+
+        <div class="row">
+		 <div class="col-lg-6 d-flex flex-column justify-content-center p-5">
+			 <div class="icon-box">
+			<h4 class="title">Video Editing:</h4><br>
+              <p class="description">Video editing is the manipulation and arrangement of video shots. Video editing is used to structure and present all video information, including films and television shows, video advertisements and video essays. Video editing has been dramatically democratized in recent years by editing software available for personal computers. Editing video can be difficult and tedious, so several technologies have been produced to aid people in this task. Pen based video editing software was developed in order to give people a more intuitive and fast way to edit video.[1]
+Video editing is the process of editing segments of motion video production footage, special effects and sound recordings in the post-production process. Motion picture film editing is a predecessor to video editing and, in several ways, video editing simulates motion picture film editing, in theory and the use of linear video editing and video editing software on non-linear editing systems (NLE). Using video, a director can communicate non-fictional and fictional events. The goal of editing is to manipulate these events to bring the communication closer to the original goal or target. It is a visual art.
+
+
+</p>
+            </div>
+          </div>
+		
+          <div class="col-lg-6 video-box">
+            <img src="{% static 'artistsalike/img/v2.jpg' %}" class="img-fluid" alt="">
+          </div>
+
+        </div>
+      </div>
+    </section
+  </main>
+   
+  <footer id="footer" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
+
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+            </ul>
+          </div>
+
+          
+          <div class="col-lg-3 col-md-6 footer-contact">
+            <h4>Contact Us</h4>
+            <p>
+              <strong>Phone:</strong> +91 8554962069<br>
+              <strong>Email:</strong> artistsalike20@gmail.com<br>
+            </p>
+
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-info">
+            <h3>About Artists Alike</h3>
+            <p>Artists Alike is a portal which is used to connect an Individual artist with other artists in order to carry out works likes music production, photogaphy, voice overs, filmography, etc.
+</p>
+            <div class="social-links mt-3">
+              <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+              <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+              <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+              <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="copyright">
+       Copyright &copy; 2021 <strong><span>Artists Alike</span></strong>. All Rights Reserved.
+      </div>
+     
+    </div>
+  </footer>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+   <script src="{% static 'artistsalike/vendor/aos/aos.js' %}"></script>
+  <script src="{% static 'artistsalike/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'artistsalike/vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static 'artistsalike/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'artistsalike/vendor/php-email-form/validate.js' %}"></script>
+  <script src="{% static 'artistsalike/vendor/purecounter/purecounter.js' %}"></script>
+  <script src="{% static 'artistsalike/vendor/swiper/swiper-bundle.min.js' %}"></script>
+  <script src="{% static 'artistsalike/vendor/waypoints/noframework.waypoints.js' %}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{% static 'artistsalike/js/main.js' %}"></script>
+
+</body>
+
+</html>

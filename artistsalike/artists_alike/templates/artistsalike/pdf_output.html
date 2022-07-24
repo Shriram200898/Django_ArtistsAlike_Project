@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>Artists Alike - Order Report</title>
+    <link href="{% static 'artistsalike/img/a1.jpg' %}" rel="icon">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,700,700i&display=swap" rel="stylesheet">
+  <link href="{% static 'artistsalike/vendor/animate.css/animate.min.css' %}" rel="stylesheet">
+  <link href="{% static 'artistsalike/vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static 'artistsalike/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'artistsalike/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'artistsalike/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'artistsalike/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'artistsalike/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.2/css/all.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<style>
+.heading{
+    text-align:center;
+    font-size:28px;
+    margin-top:40px;
+    }
+.row1{
+    text-align:center;
+    font-size:13px;
+    margin-top:10px;
+    }
+.record{
+    text-align:center;
+    font-size:13px;
+    margin-top:10px;
+    }
+.row2{
+    text-align:center;
+    margin-top:40px;
+    }
+.table{
+ border:2px solid black;
+}
+.record{
+    text-align:center;
+    font-size:16px;
+    margin-top:30px;
+    }
+</style>
+</head>
+<body>
+<div class="row">
+       <div class="container mt-8">
+           <h2 class="heading">Order Report</h2>
+       </div>
+    <div>
+        <h3>From Date:-{{From_Date}}</h3>
+        <h3>To Date:-{{To_Date}}</h3>
+    </div>
+     <div>
+         <table class="table"cellspacing="10" cellpadding="10">
+                  <thead>
+                    <tr class="row1">
+                      <th >Order ID</th>
+                      <th >Order Date</th>
+                      <th >User Name</th>
+                      <th >Artist Name</th>
+                      <th >Order Category</th>
+                      <th >Order Amount Paid</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {% for or in order %}
+                    <tr class="row2">
+                      <th>{{or.Order_id}}</th>
+                      <td>{{or.Order_Date}}</td>
+                      <td>{{or.User_Name}}</td>
+                      <td>{{or.Artist_Name}}</td>
+                      <td>{{or.O_Category}}</td>
+                      <td>{{or.Price}}</td>
+                    </tr>
+                  {% endfor %}
+                  </tbody>
+                </table>
+
+     </div>
+ </div>
+
+</body>
+</html>

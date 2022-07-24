@@ -1,0 +1,159 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Artists Alike - Order</title>
+ <link href="{% static 'artistsalike/img/a1.jpg' %}" rel="icon">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,700,700i&display=swap" rel="stylesheet">
+  <link href="{% static 'artistsalike/vendor/animate.css/animate.min.css' %}" rel="stylesheet">
+  <link href="{% static 'artistsalike/vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static 'artistsalike/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'artistsalike/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'artistsalike/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'artistsalike/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'artistsalike/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.2/css/all.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+
+
+  <link href="{% static 'artistsalike/css/style.css' %}" rel="stylesheet">
+      <link href="{% static 'artistsalike/css/order_view.css' %}" rel="stylesheet">
+</head>
+<body>
+<div class="container-fluid my-5 d-flex justify-content-center">
+    <div class="card card-1">
+        <div class="card-header bg-white">
+            <div class="media flex-sm-row flex-column-reverse justify-content-between ">
+                <div class="col my-auto">
+                    <h3 class="mb-0">Order Details...!<span class="spanclose"><a href="{% url 'viewartistorder' request.session.Artist_Email %}" class="spanbtn"><i class="bi bi bi-x-circle text-danger font-weight-bold"></i></a>
+</span></h3>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row justify-content-between mb-3">
+                <div class="col-auto">
+                    <h6 class="color-1 mb-0 change-color">Order</h6>
+                </div>
+                <div class="col-auto "> <small>Order No.  :  {{or.Order_id}}</small> </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="card card-2">
+                        <div class="card-body">
+                            <div class="media">
+                                <div class="media-body my-auto text-right">
+                                    <div class="row my-auto flex-column flex-md-row">
+                                        <div class="col my-auto">
+                                            <h6 class="mb-4" style="text-align:right;"> Order Date : {{or.Order_Date}}</h6>
+                                            <table cellpadding="5" cellspacing="20">
+                                                <tr>
+                                                    <th>Artist Name :</th>
+                                                    <td>{{or.Artist_Name}}</td>
+                                                </tr>
+                                                 <tr>
+                                                    <th>Order By : </th>
+                                                    <td>{{or.User_Name}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Category : </th>
+                                                    <td>{{or.O_Category}}</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col">
+                    <div class="card card-2">
+                        <div class="card-body">
+                            <div class="media">
+                                <div class="media-body my-auto text-right">
+                                    <div class="row my-auto flex-column flex-md-row">
+                                        <div class="col-auto my-auto ">
+                                            <h6 class="mb-0"> Uploaded File :  {{or.Upload_File}}</h6>
+                                        </div>
+                                        <div class="mt-3  text-center ">
+                          <a href="{{ or.Upload_File.url }}" class="button btn-sm btn-info text-white " download>Download&nbsp;&nbsp;<i class="bi bi-download"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col">
+                    <div class="card card-2">
+                        <div class="card-body">
+                            <div class="media">
+                                <div class="media-body my-auto text-right">
+                                    <div class="row my-auto flex-column flex-md-row">
+                                        <div class="col-auto my-auto ">
+                                            <h6 class="mb-0"> Order Description : </h6>
+                                            <h6 class="ml-3">{{or.Order_Description}}</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col text-dark">
+                            <p class="mb-1 text-dark"><b>Payment Details:</b></p>
+                             <p class="mb-1" ><b>Total     :</b> &#8377;{{or.Price}}</p>
+                        </div>
+                        <div class="flex-sm-col col-auto">
+                             <p class="mb-1 text-dark"><b>Status:</b></p>
+
+                            <p class="mt-3">
+                            {% if or.Payment_Status %}
+                            <a href="#" class="button btn-sm btn-warning text-white">Pay Now&nbsp;&nbsp;<i class="bi bi-credit-card"></i></a>
+                            {% else %}
+                                <span class="button btn-sm btn-warning text-white">Paid</span>
+                            {% endif %}
+                            </p>
+                        </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <div class="jumbotron-fluid">
+                <div class="row justify-content-between ">
+                    <div class="col-auto my-auto ">
+                        <h3 class="mb-0 font-weight-bold">TOTAL PAID</h3>
+                    </div>
+                    <div class="col-auto my-auto ml-auto">
+                        <h3 class="text-white" id="total">&#8377; {{or.Price}}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+   <script src="{% static 'artistsalike/vendor/aos/aos.js' %}"></script>
+  <script src="{% static 'artistsalike/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'artistsalike/vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static 'artistsalike/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'artistsalike/vendor/php-email-form/validate.js' %}"></script>
+  <script src="{% static 'artistsalike/vendor/purecounter/purecounter.js' %}"></script>
+  <script src="{% static 'artistsalike/vendor/swiper/swiper-bundle.min.js' %}"></script>
+  <script src="{% static 'artistsalike/vendor/waypoints/noframework.waypoints.js' %}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{% static 'artistsalike/js/main.js' %}"></script>
+
+</body>
+</html>

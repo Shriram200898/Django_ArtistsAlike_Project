@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>This is index page</h1>
+{% if request.session.Email %}
+{{ request.session.Email }}&nbsp;&nbsp;<a href="{% url 'Logout' %}" class="btn btn-info">Logout</a><br>
+{% else %}
+<a href="{% url 'userlogin' %}" class="btn btn-info">Login</a><br>
+<a href="{% url 'ArtistReg' %}" class="btn btn-info">ARegistration</a><br>
+<a href="{% url 'Reg' %}" class="btn btn-info">Registration</a><br>
+<a href="{% url 'addandshow' %}" class="btn btn-info">AddCategory</a><br>
+<a href="{% url 'admin' %}" class="btn btn-info">Admin</a><br>
+<a href="{% url 'index1' %}" class="btn btn-info">Index</a><br>
+<a href="{% url 'show_artists' %}" class="btn btn-info">Show Artists</a><br>
+<a href="{% url 'feedback' %}" class="btn btn-info">Feedback</a><br>
+<a href="{% url 'order' %}" class="btn btn-info">Order</a><br>
+<a href="{% url 'artists' %}" class="btn btn-info">Artists</a><br>
+<a href="{% url 'artistslogin' %}" class="btn btn-info">Artists Login</a><br>
+<a href="{% url 'adminlogin' %}" class="btn btn-info">Admin Login</a><br>
+<a href="{% url 'viewuserorder' %}" class="btn btn-info">ViewOrder</a><br>
+
+
+
+
+{% endif %}
+
+</body>
+</html>

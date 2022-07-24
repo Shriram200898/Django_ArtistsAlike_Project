@@ -1,0 +1,47 @@
+<div class="container-fluid">
+                            <div class="card shadow mb-5" style="height:500px;" >
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Number Of Orders</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="chart-area">
+                                        <canvas id="myPieChart" width="400" height="160"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+<div class="card shadow mb-5" style="height:500px;" >
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Bar Chart</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="chart-area">
+                                        <canvas id="myBarChart" width="400" height="160"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+
+
+<div class="text-right">
+              <form action="#" method="POST" enctype="multipart/form-data" >
+              {% csrf_token %}
+              <input class="h-15" type="date" name="Order_Date" required>
+              <button class="btn btn-sm btn-primary" type="submit" style="margin-left:-4px; margin-top:-3px; width:60px; height:30px;"><i class="bi bi-search"></i></button>
+              </form>
+          </div>
+
+<div class="text-right">
+              <form action="#" method="POST" enctype="multipart/form-data" >
+              {% csrf_token %}
+              <input class="h-15" type="date" name="Order_Date" required>
+              <button class="btn btn-sm btn-primary" type="submit" style="margin-left:-4px; margin-top:-3px; width:60px; height:30px;"><i class="bi bi-search"></i></button>
+              </form>
+          </div>
+
+<div class="text-right">
+              <form action="#" method="POST" enctype="multipart/form-data" >
+              {% csrf_token %}
+              <input class="h-15" type="date" name="Order_Date" required>
+              <button class="btn btn-sm btn-primary" type="submit" style="margin-left:-4px; margin-top:-3px; width:60px; height:30px;"><i class="bi bi-search"></i></button>
+              </form>
+          </div>

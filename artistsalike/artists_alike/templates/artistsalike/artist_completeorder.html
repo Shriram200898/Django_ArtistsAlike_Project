@@ -1,0 +1,67 @@
+{% extends 'artistsalike/artists.html' %}
+{% block content %}
+   <div class="row">
+                        <!-- Earnings (Monthly) Card Example -->
+                     <div class="container mt-8">
+         <h2 class="col-sm-12 text-center alert alert-danger">Completed Orders</h2>
+
+         {% if order %}
+
+        <table class="table table-hover">
+                  <thead>
+                    <tr class="text-center">
+                      <th scope="col">Order No.</th>
+                      <th scope="col">Order Date</th>
+                      <th scope="col">Order By</th>
+                      <th scope="col">Download File</th>
+                      <th scope="col">Upload Edited File</th>
+                      <th scope="col">Payment Status</th>
+                      <th scope="col">View Order</th>
+
+
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {% for or in order %}
+                    <tr class="text-center">
+                      <th scope="row">{{or.Order_id}}</th>
+                      <td>{{or.Order_Date}}</td>
+                      <td>{{or.User_Name}}</td>
+                      <td>
+                          <a href="{{ or.Upload_File.url }}" class="btn btn-sm btn-info" download>Download&nbsp;&nbsp;<i class="bi bi-download"></i></a>
+                      </td >
+                      <td>
+                         <a href="{{ or.Edited_File }}" download>{{ or.Edited_File }}</a>
+                          <form action="{% url 'upload_order' or.Order_id request.session.Artist_Email %}" method="POST" enctype="multipart/form-data" >
+                           {% csrf_token %}
+                          <input class="w-75" type="file" name="Edited_File" required>
+                          <button class="btn btn-success" type="submit">Upload</button>
+                           </form>
+
+                      </td>
+                        <td>
+                          {% if or.Payment_Status %}
+                            <a href="#" class="btn btn-sm btn-success text-white"><b>Pay Now</b></a>
+                          {% else %}
+                          <a href="#" class="btn btn-sm btn-warning text-white"><b>Paid</b></a>
+                        {% endif %}
+                      </td>
+
+                         <td class="text-center">
+                            <a href="{% url 'view_orderartist' or.Order_id %}" class="btn btn-sm btn-info">View&nbsp;&nbsp;<i class="bi bi-eye"></i></a>
+                        </td>
+
+                    </tr>
+                  {% endfor %}
+                  </tbody>
+                </table>
+
+         {% else %}
+         <h4 class="text-center alert alert-warning">No Records Found</h4>
+         {% endif %}
+     </div>
+ </div>
+{% endblock content %}
+
+
+
